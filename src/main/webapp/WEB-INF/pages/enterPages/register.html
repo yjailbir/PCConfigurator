@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<form th:method="POST" th:action="@{/PCConfigurator/register}" th:object="${user}">
+    <label for="username">Введите логин: </label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Неверный формат имени</div>
+    <hr/>
+    <label for="password">Введите пароль: </label>
+    <input type="text" th:field="*{userPassword}" id="password">
+    <div style="color:red" th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}">Неверный формат пароля</div>
+    <hr/>
+    <input type="submit" value="Зарегистрироваться">
+</form>
+<a href="/PCConfigurator">На главную</a>
+</body>
+</html>

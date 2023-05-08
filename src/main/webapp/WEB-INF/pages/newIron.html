@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить</title>
+  <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<div th:switch="${ironType}">
+  <!--<form th:case="case" th:method="POST" th:object="${case}" th:action="@{/PCConfigurator/add/case}">
+    <H4>Добавить корпус</H4>
+    <p>
+      <label for="caseManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="caseManufacturer">
+    </p>
+    <p>
+      <label for="caseModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="caseModel">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>-->
+  <form th:case="cooler" th:method="POST" th:object="${cooler}" th:action="@{/PCConfigurator/add/cooler}">
+    <H4>Добавить охдаждение процессора</H4>
+    <p>
+      <label for="coolerManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="coolerManufacturer">
+    </p>
+    <p>
+      <label for="coolerModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="coolerModel">
+    </p>
+    <p>
+      <label for="coolerTdp">TDP(Вт): </label>
+      <input type="text" th:field="*{TDP}" id="coolerTdp">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="cpu" th:method="POST" th:object="${cpu}" th:action="@{/PCConfigurator/add/cpu}">
+    <H4>Добавить процессор</H4>
+    <p>
+      <label for="cpuManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="cpuManufacturer">
+    </p>
+    <p>
+      <label for="cpuModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="cpuModel">
+    </p>
+    <p>
+      <label for="cpuSocket">Сокет: </label>
+      <input type="text" th:field="*{socket}" id="cpuSocket">
+    </p>
+    <p>
+      <label for="cpuCores">Ядра(штук): </label>
+      <input type="text" th:field="*{cores}" id="cpuCores">
+    </p>
+    <p>
+      <label for="cpuThreads">Потоки(штук): </label>
+      <input type="text" th:field="*{threads}" id="cpuThreads">
+    </p>
+    <p>
+      <label for="cpuFrequency">Частота(ГГц)(Разделитель - точка!): </label>
+      <input type="text" th:field="*{frequency}" id="cpuFrequency">
+    </p>
+    <p>
+      <label for="cpuMemoryType">Тип памяти: </label>
+      <input type="text" th:field="*{memoryType}" id="cpuMemoryType">
+    </p>
+    <p>
+      <label for="cpuTdp">TDP(Вт): </label>
+      <input type="text" th:field="*{TDP}" id="cpuTdp">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="gpu" th:method="POST" th:object="${gpu}" th:action="@{/PCConfigurator/add/gpu}">
+    <H4>Добавить видеокарту</H4>
+    <p>
+      <label for="gpuManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="gpuManufacturer">
+    </p>
+    <p>
+      <label for="gpuModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="gpuModel">
+    </p>
+    <p>
+      <label for="gpuMemory">Объём памяти(Гб): </label>
+      <input type="text" th:field="*{memory}" id="gpuMemory">
+    </p>
+    <p>
+      <label for="gpuFrequency">Частота(МГц): </label>
+      <input type="text" th:field="*{MHzFrequency}" id="gpuFrequency">
+    </p>
+    <p>
+      <label for="gpuMemoryType">Тип памяти: </label>
+      <input type="text" th:field="*{memoryType}" id="gpuMemoryType">
+    </p>
+    <p>
+      <label for="gpuRayTracing">Трассировка лучей(да/нет): </label>
+      <input type="text" th:field="*{rayTracing}" id="gpuRayTracing">
+    </p>
+    <p>
+      <label for="gpuPower">Мощность блока питания(Вт): </label>
+      <input type="text" th:field="*{requiredPowerSupply}" id="gpuPower">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="hdd" th:method="POST" th:object="${hdd}" th:action="@{/PCConfigurator/add/hdd}">
+    <H4>Добавить HDD</H4>
+    <p>
+      <label for="hddManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="hddManufacturer">
+    </p>
+    <p>
+      <label for="hddModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="hddModel">
+    </p>
+    <p>
+      <label for="hddMemory">Объём памяти(Гб): </label>
+      <input type="text" th:field="*{memory}" id="hddMemory">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="motherboard" th:method="POST" th:object="${motherboard}" th:action="@{/PCConfigurator/add/motherboard}">
+    <H4>Добавить материнскую плату</H4>
+    <p>
+      <label for="motherboardManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="motherboardManufacturer">
+    </p>
+    <p>
+      <label for="motherboardModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="motherboardModel">
+    </p>
+    <p>
+      <label for="motherboardForm">Форм фактор: </label>
+      <input type="text" th:field="*{formFactor}" id="motherboardForm">
+    </p>
+    <p>
+      <label for="motherboardSocket">Сокет: </label>
+      <input type="text" th:field="*{socket}" id="motherboardSocket">
+    </p>
+    <p>
+      <label for="motherboardRamPlanks">Слотов для оперативной памяти(штук): </label>
+      <input type="text" th:field="*{countOfRamPlanks}" id="motherboardRamPlanks">
+    </p>
+    <p>
+      <label for="motherboardMemoryType">Тип оперативной памяти: </label>
+      <input type="text" th:field="*{memoryType}" id="motherboardMemoryType">
+    </p>
+    <p>
+      <label for="motherboardM2Count">Количество M2 разъёмов(штук): </label>
+      <input type="text" th:field="*{m2Count}" id="motherboardM2Count">
+    </p>
+    <p>
+      <label for="motherboardSataCount">Количество SATA разъёмов(штук): </label>
+      <input type="text" th:field="*{sataCount}" id="motherboardSataCount">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="powerSupply" th:method="POST" th:object="${powerSupply}" th:action="@{/PCConfigurator/add/powerSupply}">
+    <H4>Добавить блок питания</H4>
+    <p>
+      <label for="powerManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="powerManufacturer">
+    </p>
+    <p>
+      <label for="powerModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="powerModel">
+    </p>
+    <p>
+      <label for="powerPower">Мощность(Вт): </label>
+      <input type="text" th:field="*{power}" id="powerPower">
+    </p>
+    <p>
+      <label for="powerSata">Количество SATA кабелей(штук): </label>
+      <input type="text" th:field="*{sataCount}" id="powerSata">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="ram" th:method="POST" th:object="${ram}" th:action="@{/PCConfigurator/add/ram}">
+  <H4>Добавить RAM</H4>
+  <p>
+    <label for="ramManufacturer">Производитель: </label>
+    <input type="text" th:field="*{manufacturer}" id="ramManufacturer">
+  </p>
+  <p>
+    <label for="ramModel">Модель: </label>
+    <input type="text" th:field="*{model}" id="ramModel">
+  </p>
+  <p>
+    <label for="ramType">Тип памяти: </label>
+    <input type="text" th:field="*{type}" id="ramType">
+  </p>
+  <p>
+    <label for="ramMemory">Объём памяти(Гб): </label>
+    <input type="text" th:field="*{memory}" id="ramMemory">
+  </p>
+  <p>
+    <label for="ramFrequency">Частота(МГц): </label>
+    <input type="text" th:field="*{MHzFrequency}" id="ramFrequency">
+  </p>
+  <input type="submit" value="Добавить">
+  </form>
+  <form th:case="ssd" th:method="POST" th:object="${ssd}" th:action="@{/PCConfigurator/add/ssd}">
+    <H4>Добавить SSD</H4>
+    <p>
+      <label for="ssdManufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="ssdManufacturer">
+    </p>
+    <p>
+      <label for="ssdModel">Модель: </label>
+      <input type="text" th:field="*{model}" id="ssdModel">
+    </p>
+    <p>
+      <label for="ssdMemory">Объём памяти(Гб): </label>
+      <input type="text" th:field="*{memory}" id="ssdMemory">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+  <form th:case="ssdM2" th:method="POST" th:object="${ssdM2}" th:action="@{/PCConfigurator/add/ssdM2}">
+    <H4>Добавить SSD</H4>
+    <p>
+      <label for="ssdM2Manufacturer">Производитель: </label>
+      <input type="text" th:field="*{manufacturer}" id="ssdM2Manufacturer">
+    </p>
+    <p>
+      <label for="ssdM2Model">Модель: </label>
+      <input type="text" th:field="*{model}" id="ssdM2Model">
+    </p>
+    <p>
+      <label for="ssdM2Memory">Объём памяти(Гб): </label>
+      <input type="text" th:field="*{memory}" id="ssdM2Memory">
+    </p>
+    <input type="submit" value="Добавить">
+  </form>
+</div>
+
+</body>
+</html>

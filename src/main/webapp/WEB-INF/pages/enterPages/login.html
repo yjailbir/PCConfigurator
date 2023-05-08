@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Войти</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<form th:method="POST" th:action="@{/PCConfigurator/logIn}" th:object="${user}">
+  <label for="username">Введите логин: </label>
+  <input type="text" th:field="*{username}" id="username"/>
+  <hr/>
+  <label for="password">Введите пароль: </label>
+  <input type="text" th:field="*{userPassword}" id="password">
+  <hr/>
+  <input type="submit" value="Войти">
+</form>
+<a href="/PCConfigurator">На главную</a>
+</body>
+</html>

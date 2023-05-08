@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Конструктор</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<h2>Конструктор</h2>
+<div th:object="${configuration}">
+    <div th:object="${errors}">
+        <h3>Процессор</h3>
+        <th:block th:if="${configuration.getCpu()} != null">
+            <h4 th:text="${configuration.getCpu().getManufacturer()} + ' ' + ${configuration.getCpu().getModel()}"></h4>
+            <p th:text="'Сокет: ' + ${configuration.getCpu().getSocket()}"></p>
+            <p th:text="'Ядра: ' + ${configuration.getCpu().getCores()}"></p>
+            <p th:text="'Потоки: ' + ${configuration.getCpu().getThreads()}"></p>
+            <p th:text="'Частота: ' + ${configuration.getCpu().getFrequency()} + 'ГГц'"></p>
+            <p th:text="'Тип памяти: ' + ${configuration.getCpu().getMemoryType()}"></p>
+            <p th:text="'TDP : ' + ${configuration.getCpu().getTDP()} + 'Вт'"></p>
+            <th:block th:if="${errors.containsKey('cpu')}">
+                <div th:each="error: ${errors.get('cpu')}">
+                    <p th:text="${error}" style="color:red;"></p>
+                </div>
+            </th:block>
+        </th:block>
+        <th:block th:if="${configuration.getCpu()} == null">
+            <p>Процессор не выбран</p>
+            <a href="/PCConfigurator/catalog/cpu">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>Видеокарта</h3>
+        <th:block th:if="${configuration.getGpu()} != null">
+            <h4 th:text="${configuration.getGpu().getManufacturer()} + ' ' + ${configuration.getGpu().getModel()}"></h4>
+            <p th:text="'Объём памяти: ' + ${configuration.getGpu().getMemory()} + 'Гб'"></p>
+            <p th:text="'Частота: ' + ${configuration.getGpu().getMHzFrequency()} + 'МГц'"></p>
+            <p th:text="'Тип памяти: ' + ${configuration.getGpu().getMemoryType()}"></p>
+            <p th:text="'Трассировка лучей: ' + ${configuration.getGpu().getRayTracing()}"></p>
+            <p th:text="'Мощность блока питания: ' + ${configuration.getGpu().getRequiredPowerSupply()} + 'Вт'"></p>
+            <th:block th:if="${errors.containsKey('gpu')}">
+                <div th:each="error: ${errors.get('gpu')}">
+                    <p th:text="${error}" style="color:red;"></p>
+                </div>
+            </th:block>
+        </th:block>
+        <th:block th:if="${configuration.getGpu()} == null">
+            <p>Видеокарта не выбрана</p>
+            <a href="/PCConfigurator/catalog/gpu">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>Материнская плата</h3>
+        <th:block th:if="${configuration.getMotherboard()} != null">
+            <h4 th:text="${configuration.getMotherboard().getManufacturer()} + ' ' + ${configuration.getMotherboard().getModel()}"></h4>
+            <p th:text="'Форм фактор: ' + ${configuration.getMotherboard().getFormFactor()}"></p>
+            <p th:text="'Сокет: ' + ${configuration.getMotherboard().getSocket()}"></p>
+            <p th:text="'Слотов для оперативной памяти: ' + ${configuration.getMotherboard().getCountOfRamPlanks()}"></p>
+            <p th:text="'Тип оперативной памяти: ' + ${configuration.getMotherboard().getMemoryType()}"></p>
+            <p th:text="'Количество M2 разъёмов: ' + ${configuration.getMotherboard().getM2Count()}"></p>
+            <p th:text="'Количество SATA разъёмов: ' + ${configuration.getMotherboard().getSataCount()}"></p>
+            <th:block th:if="${errors.containsKey('motherboard')}">
+                <div th:each="error: ${errors.get('motherboard')}">
+                    <p th:text="${error}" style="color:red;"></p>
+                </div>
+            </th:block>
+        </th:block>
+        <th:block th:if="${configuration.getMotherboard()} == null">
+            <p>Материнская плата не выбрана</p>
+            <a href="/PCConfigurator/catalog/motherboards">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>Оперативная память</h3>
+        <th:block th:if="${configuration.getRam()} != null">
+            <h4 th:text="${configuration.getRam().getManufacturer()} + ' ' + ${configuration.getRam().getModel()}"></h4>
+            <p th:text="'Тип памяти: ' + ${configuration.getRam().getType()}"></p>
+            <p th:text="'Объём памяти: ' + ${configuration.getRam().getMemory()} + 'Гб'"></p>
+            <p th:text="'Частота: ' + ${configuration.getRam().getMHzFrequency() + 'МГц'}"></p>
+            <th:block th:if="${errors.containsKey('ram')}">
+                <div th:each="error: ${errors.get('ram')}">
+                    <p th:text="${error}" style="color:red;"></p>
+                </div>
+            </th:block>
+        </th:block>
+        <th:block th:if="${configuration.getRam()} == null">
+            <p>Оперативная память не выбрана</p>
+            <a href="/PCConfigurator/catalog/ram">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>Охлаждение процессора</h3>
+        <th:block th:if="${configuration.getCooler()} != null">
+            <h4 th:text="${configuration.getCooler().getManufacturer()} + ' ' + ${configuration.getCooler().getModel()}"></h4>
+            <p th:text="'TDP = ' + ${configuration.getCooler().getTDP()} + 'ВТ'"></p>
+            <th:block th:if="${errors.containsKey('cooler')}">
+                <div th:each="error: ${errors.get('cooler')}">
+                    <p th:text="${error}" style="color:red;"></p>
+                </div>
+            </th:block>
+        </th:block>
+        <th:block th:if="${configuration.getCooler()} == null">
+            <p>Охлаждение не выбрано</p>
+            <a href="/PCConfigurator/catalog/coolers">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>Блок питания</h3>
+        <th:block th:if="${configuration.getPowerSupply()} != null">
+            <h4 th:text="${configuration.getPowerSupply().getManufacturer()} + ' ' + ${configuration.getPowerSupply().getModel()}"></h4>
+            <p th:text="'Мощность: ' + ${configuration.getPowerSupply().getPower()} + 'Вт'"></p>
+            <p th:text="'Количество SATA кабелей: ' + ${configuration.getPowerSupply().getSataCount()}"></p>
+            <th:block th:if="${errors.containsKey('powerSupply')}">
+                <div th:each="error: ${errors.get('powerSupply')}">
+                    <p th:text="${error}" style="color:red;"></p>
+                </div>
+            </th:block>
+        </th:block>
+        <th:block th:if="${configuration.getPowerSupply()} == null">
+            <p>Охлаждение не выбрано</p>
+            <a href="/PCConfigurator/catalog/powerSupplies">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>SSD накопитель</h3>
+        <th:block th:if="${configuration.getSsd()} != null">
+            <h4 th:text="${configuration.getSsd().getManufacturer()} + ' ' + ${configuration.getSsd().getModel()}"></h4>
+            <p th:text="'Объём памяти: ' + ${configuration.getSsd().getMemory()} + 'Гб'"></p>
+        </th:block>
+        <th:block th:if="${configuration.getSsd()} == null">
+            <p>SSD накопитель не выбран</p>
+            <a href="/PCConfigurator/catalog/ssd">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>SSD M2 накопитель</h3>
+        <th:block th:if="${configuration.getSsdM2()} != null">
+            <h4 th:text="${configuration.getSsd().getManufacturer()} + ' ' + ${configuration.getSsdM2().getModel()}"></h4>
+            <p th:text="'Объём памяти(Гб): ' + ${configuration.getSsdM2().getMemory()} + 'Гб'"></p>
+        </th:block>
+        <th:block th:if="${configuration.getSsdM2()} == null">
+            <p>SSD M2 накопитель не выбран</p>
+            <a href="/PCConfigurator/catalog/ssdM2">Выбрать</a>
+        </th:block>
+        <hr/>
+        <h3>HDD накопитель</h3>
+        <th:block th:if="${configuration.getHdd()} != null">
+            <h4 th:text="${configuration.getHdd().getManufacturer()} + ' ' + ${configuration.getHdd().getModel()}"></h4>
+            <p th:text="'Объём памяти(Гб): ' + ${configuration.getHdd().getMemory()} + 'Гб'"></p>
+        </th:block>
+        <th:block th:if="${configuration.getHdd()} == null">
+            <p>HDD накопитель не выбран</p>
+            <a href="/PCConfigurator/catalog/hdd">Выбрать</a>
+        </th:block>
+        <hr/>
+        <a href="/PCConfigurator">На главную</a>
+    </div>
+</div>
+</body>
+</html>

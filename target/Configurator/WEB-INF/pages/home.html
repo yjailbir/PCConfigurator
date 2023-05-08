@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PC Configurator</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<p>Добро пожаловать!</p>
+<p>На этом сайте вы можете подобрать себе совместимые с вашим железом ПК комплектующие.</p>
+<hr/>
+<a href="PCConfigurator/catalog">Каталог</a>
+<hr/>
+<th:block th:if="not ${isAdmin} and not ${isUser}">
+    <a href="PCConfigurator/logIn">Войти</a>
+    <hr/>
+    <a href="PCConfigurator/register">Зарегистироваться</a>
+</th:block>
+<th:block th:if="${isUser}">
+    <a href="PCConfigurator/myConfiguration">Моя конфигурация</a>
+    <hr/>
+</th:block>
+<th:block th:if="${isAdmin} or ${isUser}">
+    <a href="/PCConfigurator/logOut">Выйти из учётной записи</a>
+</th:block>
+</body>
+</html>

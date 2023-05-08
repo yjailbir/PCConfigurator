@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<div>
+    <a href="catalog/cpu">Процессоры</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/cpu}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/gpu">Видеокарты</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/gpu}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/motherboards">Материнские платы</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/motherboard}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/ram">Оперативная память</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/ram}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/ssd">SSD накопители</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/ssd}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/ssdM2">SSD M2 накопители</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/ssdM2}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/hdd">HDD накопители</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/hdd}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/powerSupplies">Блоки питания</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/powerSupply}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<div>
+    <a href="catalog/coolers">Охлаждение процессора</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/cooler}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>
+<!--<div>
+    <a href="catalog/cases">Корпуса</a>
+    <th:block th:if="${isAdmin}">
+        <p>
+            <a th:href="@{add/case}">Добавить</a>
+        </p>
+    </th:block>
+    <hr/>
+</div>-->
+<a href="/PCConfigurator">На главную</a>
+</body>
+</html>

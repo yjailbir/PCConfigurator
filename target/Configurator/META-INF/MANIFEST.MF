@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: Nikita
+Build-Jdk: 17.0.7
+Implementation-Title: Configurator Maven Webapp
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: program
+Main-Class: ${start-class}
+

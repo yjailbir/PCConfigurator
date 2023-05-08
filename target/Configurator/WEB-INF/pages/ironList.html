@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<div th:switch="${ironType}">
+    <div th:case="cpu">
+        <div th:each="cpu: ${cpuList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${cpu.getManufacturer()} + '_' + ${cpu.getModel()}, type = 'cpu')}" th:text="${cpu.getManufacturer()} + ' ' + ${cpu.getModel()} + ' ' + ${cpu.getFrequency()} + 'GHz'"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${cpu.getManufacturer()} + '_' + ${cpu.getModel()}, type = 'cpu')}">
+                   <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="gpu">
+        <div th:each="gpu: ${gpuList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${gpu.getManufacturer()} + '_' + ${gpu.getModel()}, type = 'gpu')}" th:text="${gpu.manufacturer} + ' ' + ${gpu.getModel()} + ' ' + ${gpu.getMemory()} + 'Gb ' + ${gpu.getMemoryType()}"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${gpu.getManufacturer()} + '_' + ${gpu.getModel()}, type = 'pgu')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="motherboards">
+        <div th:each="motherboard: ${motherboardList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${motherboard.getManufacturer()} + '_' + ${motherboard.getModel()}, type = 'motherboard')}" th:text="${motherboard.getManufacturer()} + ' ' + ${motherboard.getModel()} + ' ' + ${motherboard.getSocket()} + ' ' + ${motherboard.getFormFactor()}"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${motherboard.getManufacturer()} + '_' + ${motherboard.getModel()}, type = 'motherboard')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="ram">
+        <div th:each="ram: ${ramList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${ram.getManufacturer()} + '_' + ${ram.getModel()}, type = 'ram')}" th:text="${ram.getManufacturer()} + ' ' + ${ram.getModel()} + ' ' + ${ram.getMemory()} + 'Gb ' + ${ram.getMHzFrequency()} + 'GHz'"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${ram.getManufacturer()} + '_' + ${ram.getModel()}, type = 'ram')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="ssd">
+        <div th:each="ssd: ${ssdList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${ssd.getManufacturer()} + '_' + ${ssd.getModel()}, type = 'ssd')}" th:text="${ssd.getManufacturer()} + ' ' + ${ssd.getModel()} + ' ' + ${ssd.getMemory()} + 'Gb'"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${ssd.getManufacturer()} + '_' + ${ssd.getModel()}, type = 'ssd')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="ssdM2">
+        <div th:each="ssdm2: ${ssdM2List}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${ssdm2.getManufacturer()} + '_' + ${ssdm2.getModel()}, type = 'ssdM2')}" th:text="${ssdm2.getManufacturer()} + ' ' + ${ssdm2.getModel()} + ' ' + ${ssdm2.getMemory()} + 'Gb'"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${ssdm2.getManufacturer()} + '_' + ${ssdm2.getModel()}, type = 'ssdM2')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="hdd">
+        <div th:each="hdd: ${hddList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${hdd.getManufacturer()} + '_' + ${hdd.getModel()}, type = 'hdd')}" th:text="${hdd.getManufacturer()} + ' ' + ${hdd.getModel()} + ' ' + ${hdd.getMemory()} + 'Gb'"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${hdd.getManufacturer()} + '_' + ${hdd.getModel()}, type = 'hdd')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="powerSupplies">
+        <div th:each="powerSupply: ${powerSupplyList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${powerSupply.getManufacturer()} + '_' + ${powerSupply.getModel()}, type = 'powerSupply')}" th:text="${powerSupply.getManufacturer()} + ' ' + ${powerSupply.getModel()} + ' ' + ${powerSupply.getPower()} + 'Wt'"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${powerSupply.getManufacturer()} + '_' + ${powerSupply.getModel()}, type = 'powerSupply')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <div th:case="coolers">
+        <div th:each="cooler: ${coolerList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${cooler.getManufacturer()} + '_' + ${cooler.getModel()}, type = 'cooler')}" th:text="${cooler.getManufacturer()} + ' ' + ${cooler.getModel()}"></a>
+            <th:block th:if="${isAdmin}">
+                <form th:method="DELETE" th:action="@{/PCConfigurator/catalog/{type}/{name}(name = ${cooler.getManufacturer()} + '_' + ${cooler.getModel()}, type = 'cooler')}">
+                    <p><input type="submit" value="Удалить"></p>
+                </form>
+            </th:block>
+            <hr/>
+        </div>
+    </div>
+    <!--<div th:case="cases">
+        <div th:each="case: ${casesList}">
+            <a th:href="@{/PCConfigurator/catalog/{type}/{name}(name = ${case.getManufacturer()} + '_' + ${case.getModel()}, type = 'case')}" th:text="${case.getManufacturer()} + ' ' + ${case.getModel()}"></a>
+            <hr/>
+        </div>
+    </div>-->
+</div>
+<a href="/PCConfigurator">На главную</a>
+</body>
+</html>

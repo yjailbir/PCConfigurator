@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${manufacturer} + ' ' + ${model}"></title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/static/styles/styles.css}">
+</head>
+<body>
+<div th:switch="${ironType}">
+    <h4 th:text="${manufacturer} + ' ' + ${model}"></h4>
+    <hr/>
+    <div th:case="cooler">
+        <p th:text="'TDP = ' + ${coolerModel.getTDP()} + 'ВТ'"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${coolerModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="cpu" th:object="${cpuModel}">
+        <p th:text="'Сокет: ' + ${cpuModel.getSocket()}"></p>
+        <p th:text="'Ядра: ' + ${cpuModel.getCores()}"></p>
+        <p th:text="'Потоки: ' + ${cpuModel.getThreads()}"></p>
+        <p th:text="'Частота(ГГц): ' + ${cpuModel.getFrequency()}"></p>
+        <p th:text="'Тип памяти: ' + ${cpuModel.getMemoryType()}"></p>
+        <p th:text="'TDP(Вт): ' + ${cpuModel.getTDP()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${cpuModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="gpu">
+        <p th:text="'Объём памяти(Гб): ' + ${gpuModel.getMemory()}"></p>
+        <p th:text="'Частота(МГц): ' + ${gpuModel.getMHzFrequency()}"></p>
+        <p th:text="'Тип памяти: ' + ${gpuModel.getMemoryType()}"></p>
+        <p th:text="'Трассировка лучей: ' + ${gpuModel.getRayTracing()}"></p>
+        <p th:text="'Мощность блока питания(Вт): ' + ${gpuModel.getRequiredPowerSupply()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${gpuModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="hdd">
+        <p th:text="'Объём памяти(Гб): ' + ${hddModel.getMemory()}"></p>
+    </div>
+    <div th:case="motherboard">
+        <p th:text="'Форм фактор: ' + ${motherboardModel.getFormFactor()}"></p>
+        <p th:text="'Сокет: ' + ${motherboardModel.getSocket()}"></p>
+        <p th:text="'Слотов для оперативной памяти: ' + ${motherboardModel.getCountOfRamPlanks()}"></p>
+        <p th:text="'Тип оперативной памяти: ' + ${motherboardModel.getMemoryType()}"></p>
+        <p th:text="'Количество M2 разъёмов: ' + ${motherboardModel.getM2Count()}"></p>
+        <p th:text="'Количество SATA разъёмов: ' + ${motherboardModel.getSataCount()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${motherboardModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="powerSupply">
+        <p th:text="'Мощность(Вт): ' + ${powerSupplyModel.getPower()}"></p>
+        <p th:text="'Количество SATA кабелей: ' + ${powerSupplyModel.getSataCount()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${powerSupplyModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="ram">
+        <p th:text="'Тип памяти: ' + ${ramModel.getType()}"></p>
+        <p th:text="'Объём памяти(Гб): ' + ${ramModel.getMemory()}"></p>
+        <p th:text="'Частота(МГц): ' + ${ramModel.getMHzFrequency()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${ramModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="ssd">
+        <p th:text="'Объём памяти(Гб): ' + ${ssdModel.getMemory()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${ssdModel}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+    <div th:case="ssdM2">
+        <p th:text="'Объём памяти(Гб): ' + ${ssdM2Model.getMemory()}"></p>
+        <th:block th:if="${isUser}">
+            <form th:method="POST" th:action="@{/PCConfigurator/myConfiguration/add/{ironType}/{currentIron}(ironType = ${ironType}, currentIron = ${currentIron})}" th:object="${ssdM2Model}">
+                <input type="submit" value="Добавить в мою сборку">
+            </form>
+        </th:block>
+    </div>
+</div>
+<hr/>
+<a href="/PCConfigurator/catalog">К каталогу</a>
+<a href="/PCConfigurator">На главную</a>
+</body>
+</html>
