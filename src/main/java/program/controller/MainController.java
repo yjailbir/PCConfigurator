@@ -40,7 +40,6 @@ public class MainController {
         model.addAttribute("isUser", isUser);
 
         return "home";
-
     }
 
     @GetMapping("/catalog")
