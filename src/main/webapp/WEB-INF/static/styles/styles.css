@@ -1,10 +1,30 @@
 /* Общие стили */
+*, *::before, *::after{
+    box-sizing: border-box;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 20px 0;
     padding: 0;
     background-color: #f0f0f0;
     color: #333;
+    height: 100vh;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
 }
 
 .container {
